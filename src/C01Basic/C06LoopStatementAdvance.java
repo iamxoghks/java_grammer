@@ -94,8 +94,31 @@ public class C06LoopStatementAdvance {
 //        num2 = 40;
 
         // i 를 어떻게 재사용 할 수 있을까. 하위에서 선언되어서 ㅇㅇ for문 밖에서는 의미 없음
-        for(int i = 0; i < 10; i++) break;
-        for(int i = 0; i < 10; i++) break;
+//        for(int i = 0; i < 10; i++) break;
+//        for(int i = 0; i < 10; i++) break;
 
+//        다중 for문
+//        2~9까지 모든 구구단 한 번에 출력
+//        2단입니다 ~
+//        3단입니다 ~
+//        StringBuilder sb  = new StringBuilder();
+//        for (int i = 1; i < 10; i++) {
+//            sb.append(i).append( " 단 입니다. : ");
+//            for (int j = 1; j < 10; j++) {
+//                sb.append(i).append(" X ").append(j).append(" = ").append(i*j);
+//            }
+//            System.out.println(sb);
+//        }
+
+        // 라벨문: 반복문에 이름을 붙이는 것
+        // 원하는 for 문을 labeling을 통해 break 또는 continue 시킬 수 있음.
+//        loop1:
+//        for(int i = 0; i <10; i++) {
+//            for(int j = 0; i < 10; j++) {
+//                if(true) {
+//                    break loop1;
+//                }
+//            }
+//        }
     }
 }
