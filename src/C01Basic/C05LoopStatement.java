@@ -48,10 +48,27 @@ public class C05LoopStatement {
 //        }
 
 //        do while 문: 무조건 1번은 실행되는 while문
-        int a = 100;
-        do {
-            System.out.println("h w!");
-        } while ( a < 10);
+//        int a = 100;
+//        do {
+//            System.out.println("h w!");
+//        } while ( a < 10);
+
+        // for 문은 초기식, 조건식, 증감식 모두 포함되어 있는 반복문이다.
+//        for(int i = 0; i < 10; i++) {
+//            System.out.println("h w!");
+//        }
+
+        // 1~10중에 홀수만 출력하기
+//        for(int i = 1; i <= 10; i++) {
+//            if(i % 2 != 0) System.out.println(i);
+//        }
+
+        // 1~10중에 홀수만 출력하기 방법 2 -> continue를 왜 쓰나? 가독성을 위해서
+        // continue를 거친다면 하위의 코드를 실행하지 않음.
+//        for(int i = 1; i <= 10; i++) {
+//            if(i % 2 == 0) continue;
+//            System.out.println(i);
+//        }
 
     }
 }
