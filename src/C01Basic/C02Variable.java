@@ -48,6 +48,7 @@ public class C02Variable {
 //        double d2 = 0.42;
 //        System.out.println(d1-d2);
 //        // 값을 입력받아 저장할 때부터 문자로 입력을 받아 오차문제를 해결
+          // 금전, 은행 등 관련 거래가 필요할 때 필수로 씀. 그 외에는 그닥..?
 //        BigDecimal b1 = new BigDecimal("1.03");
 //        BigDecimal b2 = new BigDecimal("0.42");
 //        double result = b1.subtract(b2).doubleValue();
@@ -112,6 +113,27 @@ public class C02Variable {
 //        // 예) 문자 비교를 위한 묵시적 타입변환
 //        System.out.println('a' > 'b'); // ASCII 코드를 비교함
 //        System.out.println('a' < 'b'); // 동일
-        
+
+//        문제) 알바펫 소문자 개수 세기
+        String st1 = "012DWA@14admaiowd";
+        int count = 0;
+        for(int i = 0; i < st1.length(); i++) {
+            char ch = st1.charAt(i);
+            if(ch>= 97 && ch <= 122) count++;
+            // 알파벳 전체 개수일 때
+//            if((ch>= 97 && ch <= 122) || ch>= 65 && ch <= 90) count++;
+        }
+        System.out.println(count);
+
+        // 변수와 상수
+        // 변수: 재할당 가능, 재선언은 불가능
+//        int a1 = 10;
+//        a1 = 20;
+//        // 불가능 -> 위에 이미 선언함
+//        int a1 = 30;
+
+        // 상수: 값의 재할당 불가능. 정해진값을 사용시 상수 활용.
+        final int a1 = 10;
+
     }
 }
