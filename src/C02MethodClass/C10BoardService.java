@@ -21,148 +21,135 @@ import java.util.List;
 public class C10BoardService {
     public static void main(String[] args) throws IOException {
         List<User> userList = new ArrayList<>();
-        List<Post> postList = new ArrayList<>();
+        List<Board>  boardList = new ArrayList<>();
 
-        while (true){
-            System.out.println("실행할 서비스의 번호를 눌러주세요.");
-            System.out.println("1. 회원가입\n2. 회원 전체 목록 조회\n3. 회원 상세조회\n4. 게시글 작성\n5. 게시물 목록 조회\n6. 게시물 상세 조회");
+        while (true) {
+            System.out.println("원하는 서비스의 번호를 입력해주세요.");
+            System.out.println("1. 회원가입\n2. 회원 전체 목록 조회\n3. 회원 상세조회\n" +
+                    "4. 게시글 작성\n5. 게시물 목록 조회\n6. 게시물 상세 조회");
+
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//            StringTokenizer st = new StringTokenizer();
             int number = Integer.parseInt(br.readLine());
 
-            switch (number){
+            switch (number) {
                 case 1:
-                    System.out.println("회원가입 서비스 입니다.\n이름, 이메일, 비밀번호를 순서대로 입력해주세요\n");
+                    System.out.println("이름, 비밀번호, 이메일 순서대로 입력");
                     String name = br.readLine();
-                    String email = br.readLine();
                     String password = br.readLine();
-                    userList.add(new User(name, password, email));
-                    System.out.println("가입되었습니다.\n");
+                    String email = br.readLine();
+
+                    userList.add(new User(name,password,email));
                     break;
                 case 2:
-                    System.out.println("회원 전체 목록을 조회합니다.\n");
-                    if(userList.isEmpty()) System.out.println("사용자 목록이 비어있습니다.\n");
-                    else for(User u : userList) System.out.println(u.getName() + ", " + u.getEmail());
+                    System.out.println("회원 전체 목록 조회");
+                    User user = null;
+                    for(User u : userList) System.out.println("name: " + u.getUserName() + ", email:" +  u.getUserEmail());
                     break;
                 case 3:
-                    System.out.println("회원 상세 조회(id로 조회)합니다. id를 입력해주세요.\n");
-//                    id, email, name, password, 작성글수(postList에서 조회하거나, author객체에서 postList목록을 변수로 갖는것도 가능)
-                    long id = Long.parseLong(br.readLine());
-                    if(!userList.contains(id)) System.out.println("존재하지 않는 유저 아이디입니다.\n");
-                    else {
-                        User user  = null;
-                        for(User u : userList){
-                            if(u.getUserId() == id){
-                                user = u;
-                                break;
-                            }
-                        }
-                        long count = 0;
-                        for(Post post : postList) {
-                            if(post.getUserEmail().equals(user.getEmail())) count++;
-                        }
-                    }
-                    break;
-                case 4:
-                    System.out.println("게시글을 작성합니다. title, content, email을 입력해주세요.\n");
-                    String title = br.readLine();
-                    String content = br.readLine();
-                    String userEmail = br.readLine();
-                    User user = null;
-                    for(User u : userList){
-                        if(u.getEmail().equals(userEmail)) {
-                            user = u;
-                            break;
-                        }
-                    }
-                    postList.add(new Post(title, content, userEmail));
-                    System.out.println("작성 완료.");
-                    break;
-                case 5:
-                    System.out.println("게시물 목록을 조회합니다.\n");
-                    for(Post post : postList) System.out.println(post.getPost_id() + ", " + post.getTitle());
-                    break;
-                case 6:
-                    System.out.println("게시물의 상세 정보를 조회합니다.\n게시글의 id를 입력해주세요.\n");
-                    long postId = Long.parseLong(br.readLine());
-                    Post post = null;
-                    for(Post p : postList) {
-                        if(p.getPost_id() == postId) {
-                            post = p;
-                            break;
-                        }
-                    }
+                    System.out.println("상세 조회. id를 입력하세요.");
+                    long userId = Long.parseLong(br.readLine());
                     User user1 = null;
-                    for(User u : userList){
-                        if(post.getUserEmail().equals(u.getEmail())) {
+                    for(User u : userList) {
+                        if(u.getUserId() ==userId) {
                             user1 = u;
                             break;
                         }
                     }
+                    Board board = null;
+                    int counter = 0;
+                    for(Board b : boardList) {
+                        if(b.getUserEmail().equals(user1.getUserEmail())) {
+                            board = b;
+                            counter++;
+                        }
+                    }
+                    System.out.println(user1.getUserId() + user1.getUserName() + user1.getUserEmail() + user1.getPassword() + counter);
+                    break;
+                case 4:
+                    System.out.println("게시글을 작성합니다. 제목과 내용, 이메일을 입력해주세요");
+                    String title = br.readLine();
+                    String content = br.readLine();
+                    String userEmail = br.readLine();
 
-                    System.out.println("id: " + post.getPost_id() + ", title: " + post.getTitle() + ", content: " + post.getContent() + ", user email: " + user1.getEmail());
+                    boardList.add(new Board(title,content,userEmail));
 
+                    System.out.println("입력 완료");
+                    break;
+                case 5:
+                    for (Board b : boardList) System.out.println("id: " + b.getPostId() + ", title: " + b.getTitle());
+                    break;
+                case 6:
+                    System.out.println("조회할 글의 id 입력");
+                    Board board1 = null;
+                    long postId = Long.parseLong(br.readLine());
+                    for(Board b : boardList) {
+                        if(b.getPostId() == postId) {
+                            board1 = b;
+                        }
+                    }
+
+                    System.out.println(board1.getPostId() + board1.getTitle() + board1.getContent() + board1.getUserEmail());
                     break;
             }
         }
-    }
 
+    }
 }
 
-class User{
-    private String name;
+class User {
+    private long userId;
+    private String userName;
     private String password;
-    private String email;
-    private long user_id;
-    private static long staticUserId;
-
-    public User(String name, String password, String email) {
-        staticUserId++;
-        this.name = name;
-        this.password = password;
-        this.email = email;
-        this.user_id = staticUserId;
-    }
-
-    public long getUserId() {
-        return user_id;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public String toString() {
-        return "(id: " + this.user_id +
-                ", name: " + this.name +
-                ", email: " + this.email +
-                ")";
-    }
-}
-
-class Post{
-    private long post_id;
-    private String title;
-    private String content;
-    private static long staticPostId;
     private String userEmail;
+    private static long staticId;
 
-    public Post(String title, String content, String userEmail) {
-        staticPostId++;
-        this.post_id = staticPostId;
-        this.title = title;
-        this.content = content;
+    public User(String name, String password, String userEmail) {
+        staticId++;
+        this.userId=staticId;
+        this.userName = name;
+        this.password = password;
         this.userEmail = userEmail;
     }
 
-    public long getPost_id() {
-        return post_id;
+    public long getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public static long getStaticId() {
+        return staticId;
+    }
+}
+
+class Board {
+    private long postId;
+    private String title;
+    private String content;
+    private String userEmail;
+    private static long staticBoardId;
+
+    public Board(String title, String content, String userEmail) {
+        staticBoardId++;
+        this.postId=staticBoardId;
+        this.title = title;
+        this.content = content;
+        this.userEmail = userEmail;
+
+    }
+
+    public long getPostId() {
+        return postId;
     }
 
     public String getTitle() {
@@ -173,21 +160,11 @@ class Post{
         return content;
     }
 
-    public static long getStaticPostId() {
-        return staticPostId;
-    }
-
     public String getUserEmail() {
         return userEmail;
     }
 
-    @Override
-    public String toString() {
-        return "(post id: " + post_id +
-                "title: " + title +
-                "content: " + content +
-                "user email : " + userEmail +
-                ")";
+    public static long getStaticBoardId() {
+        return staticBoardId;
     }
-
 }
