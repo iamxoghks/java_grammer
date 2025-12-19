@@ -9,7 +9,6 @@ public class C01InnerClass {
         Member.MemberInnerClass mi = new Member.MemberInnerClass(20);
         System.out.println(mi.getB());
 
-
     }
 }
 
