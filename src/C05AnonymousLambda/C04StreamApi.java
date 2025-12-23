@@ -50,7 +50,7 @@ public class C04StreamApi {
 //        // 여기까지 stream. 중계연산은 여기까지 stream으로 return
 //        // sum: stream의 연산을 하나씩 소모하여 총 합을 구하는 method
 //        int total = Arrays.stream(intArr).filter(a -> a > 30).sum();
-////        int total = Arrays.stream(intArr).filter(a -> a > 30).map(a -> a *2).sum();
+//        int total = Arrays.stream(intArr).filter(a -> a > 30).map(a -> a *2).sum();
 //        System.out.println(total);
 //        // map: 기존의 stream 을 조작하여 새로운 stream을 반환
 //        int total2 = Arrays.stream(intArr).map(a -> a * a).sum();
@@ -64,9 +64,9 @@ public class C04StreamApi {
 //        // mapToInt: intStream 형태로 변환해주는 map
 //        String[] stArr = {"java", "python", "c++"};
 //        // 또는
-////        int totalLength = Arrays.stream(stArr).mapToInt(String::length).sum();
+//        int totalLength = Arrays.stream(stArr).mapToInt(String::length).sum();
 //        // 여기까지는 intStream으로 변환
-////        int totalLength = Arrays.stream(stArr).mapToInt(a -> a.length())
+//        int totalLength = Arrays.stream(stArr).mapToInt(a -> a.length())
 //        int totalLength = Arrays.stream(stArr).mapToInt(a -> a.length()).sum();
 //        System.out.println(totalLength);
 
@@ -86,7 +86,7 @@ public class C04StreamApi {
 
         // stream의 소모
         // forEach, sum, count, max, min, reduce(누적연산), findFirst(stream 첫 번째 값 return)
-        int[] arr = {10, 20, 30, 40};
+//        int[] arr = {10, 20, 30, 40};
 //        Arrays.stream(arr).forEach(System.out::println);
 ////        Arrays.stream(arr).forEach(a -> System.out.println(a)); // 더이상 stream이 아니라 .찍고 이어갈 수 없음
 //        int total = Arrays.stream(arr).sum();
@@ -192,11 +192,11 @@ public class C04StreamApi {
 //        System.out.println(st3.orElseThrow(() -> new NullPointerException("값이 없습니다.")));
 
         // Optional 객체 처리 실습
-        List<Student> studentList = new ArrayList<>();
-        studentList.add(new Student("kim", 20));
-        studentList.add(new Student("choi", 30));
-        studentList.add(new Student("lee", 35));
-        studentList.add(new Student("park", 22));
+//        List<Student> studentList = new ArrayList<>();
+//        studentList.add(new Student("kim", 20));
+//        studentList.add(new Student("choi", 30));
+//        studentList.add(new Student("lee", 35));
+//        studentList.add(new Student("park", 22));
 //        OptionalDouble opAvgAge = studentList.stream().mapToInt(a -> a.getAge()).average();
         // 1) isPresent()
 //        OptionalDouble opAvgAge = studentList.stream().mapToInt(Student::getAge).average();
@@ -207,23 +207,23 @@ public class C04StreamApi {
 //        double opAvgAge2 = studentList.stream().mapToInt(a -> a.getAge()).average().orElseThrow(() -> new NoSuchElementException("값이 없습니다."));
 //        System.out.println(opAvgAge2);
 //
-        System.out.println("조회하고자 하는 student의 index 번호를 입력해주세요");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int index = Integer.parseInt(br.readLine());
-
-        // null exception 없음
-        Student s1 = studentList.get(index);
-        System.out.println(s1);
-
-        if (studentList.size() <= index || index < 0) System.out.println("없는 index 입니다.");
-        else System.out.println(studentList.get(index));
-
-        //
-        Optional<Student> s2;
-        if (studentList.size() <= index || index < 0) s2 = Optional.empty();
-        else s2 = Optional.of(studentList.get(index));
-        //
-        System.out.println(s2.orElseThrow(() -> new NoSuchElementException("없는 회원입니다.")));
+//        System.out.println("조회하고자 하는 student의 index 번호를 입력해주세요");
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        int index = Integer.parseInt(br.readLine());
+//
+//        // null exception 없음
+//        Student s1 = studentList.get(index);
+//        System.out.println(s1);
+//
+//        if (studentList.size() <= index || index < 0) System.out.println("없는 index 입니다.");
+//        else System.out.println(studentList.get(index));
+//
+//        //
+//        Optional<Student> s2;
+//        if (studentList.size() <= index || index < 0) s2 = Optional.empty();
+//        else s2 = Optional.of(studentList.get(index));
+//        //
+//        System.out.println(s2.orElseThrow(() -> new NoSuchElementException("없는 회원입니다.")));
 
 
 
