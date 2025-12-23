@@ -46,7 +46,7 @@ public class MemberService {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("member not found"));
         // password 일치하는지 확인, + 예외 발생
-        if(member.getEmail().equals(email)) {
+        if(member.getPassword().equals(password)) {
             throw new IllegalArgumentException("member not found");
         }
     }
