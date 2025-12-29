@@ -8,22 +8,32 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int n = Integer.parseInt(br.readLine());
+        System.out.print("트리 높이 입력: ");
+        int h = Integer.parseInt(br.readLine());
 
-        Queue<Integer> pq = new PriorityQueue<>((o1, o2) -> {
-            if (Math.abs(o1) - Math.abs(o2) == 0) return o1 - o2;
-            else return Math.abs(o1) - Math.abs(o2);
-        });
+        for (int i = 1; i <= h; i++) {
+            int spaces = h - i;
+            int width = 2 * i - 1;
 
-        for (int i = 0; i < n; i++) {
-            int x = Integer.parseInt(br.readLine());
-            if(x != 0) pq.add(x);
-            else sb.append(pq.isEmpty() ? 0 : pq.poll()).append('\n');
+            repeat(' ', spaces);
+
+            for (int j = 1; j <= width; j++) {
+                if (i == 1 && j == (width + 1) / 2) System.out.print("★");
+                else if ((i + j) % 7 == 0) System.out.print("o");
+                else if ((i * j) % 11 == 0) System.out.print("+");
+                else System.out.print("*");
+            }
+            System.out.println();
         }
 
-        System.out.println(sb);
+        for (int t = 0; t < 2; t++) {
+            repeat(' ', h - 1);
+            System.out.println("|");
+        }
+    }
 
+    static void repeat ( char ch, int count){
+        for (int i = 0; i < count; i++) System.out.print(ch);
     }
 
 }
